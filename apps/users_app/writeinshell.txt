@@ -1,0 +1,25 @@
+Query:
+insert into first_name, last_name, email_address, age, created_at, updated_at
+
+newUser = users.objects.create(first_name="Leslie", last_name="Knope", email_address="Leslie@wahmail.com", age=36)
+
+first = users.objects.first()
+newUser.save()
+first.__dict__
+
+Users.objects.create(first_name="Ron", last_name="Swanson", email_address="ron@wahmail.com", age=42)
+Users.objects.create(first_name="Ann", last_name="Perkins", email_address="ann@wahmail.com", age=29)
+
+Users.objects.all().values()
+Users.objects.last()
+Users.objects.first()
+
+user_to_update = Users.objects.get(id=3)
+user_to_update.last_name="Pancakes"
+user_to_update.save()
+
+user_to_delete = Users.objects.get(id=2)
+user_to_delete.delete()
+
+Users.objects.all().order_by("first_name")
+Users.objects.all().order_by("-first_name")

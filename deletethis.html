@@ -1,0 +1,14 @@
+<form action="/authors/{{showAuthor.id}}">
+    {% csrf_token %}
+    <select class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        select a book
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            {%for book in allBooks%}
+            <option class="dropdown-item" value="{{book.id}}" type="button">{{book.title}}</option>
+            {%endfor%}
+        </div>
+    </select>
+<a href="/authors/{{oneAuthor.id}}" class="badge badge-primary">Add</a>
+</form>

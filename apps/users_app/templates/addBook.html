@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Book</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css.css' %}">  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="row">
+        <div class="col">
+            <h1>Add a Book:</h1>
+            <div class='form container-fluid'>
+                <form action="/" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="ttitle">Title:</label>
+                        <input type="text" id="ttitle" name="title" class="form-control" placeholder="Enter title of book">
+                    </div>
+                    <div class="form-group">
+                        <label for="ddescrip">Description</label>
+                        <input type="text" id="ddescrip" name="description" class="form-control" placeholder="Enter book description">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+            </div>
+        </div>
+        <div class="col">
+            <h1>All Books:</h1>
+            <div class="list container-fluid">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>{% for oneBook in allBooks %}
+                        <th scope="row">{{oneBook.id}}</th>
+                            <td>{{oneBook.title}}</td>
+                            <td>
+                                <a href="/books/{{oneBook.id}}" class="badge badge-primary">View</a>
+                            </td>
+                        </tr>
+                            {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

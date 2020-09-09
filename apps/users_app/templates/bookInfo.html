@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Book Info</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css.css' %}">  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{showBook.title}}</h5>
+            <p class="card-text">ID: {{showBook.id}}</p>
+            <p class="card-text">Description: {{showBook.description}}</p>
+            <ulß class="card-text">Authors:
+                    {% for oneAuthor in authorsBook%}
+                    <li class="card-text">{{oneAuthor.first_name}} {{oneAuthor.last_name}}</li>
+                    {%endfor%}
+            </ul>
+        </div>
+        <form action="/books/{{showBook.id}}/add" method="post">
+            {% csrf_token %}
+            <select name="author_id">
+                {%for author in allAuthors%}
+                <option value="{{author.id}}">{{author.first_name}} {{author.last_name}}</option>
+                {%endfor%}
+            </select>
+            <button type ="submit" class="badge badge-primary">Add</button>
+        </form>
+    </div>
+</body>
+</html>
